@@ -1,10 +1,9 @@
-FROM alpine:3.9
+FROM alpine:3.10
 
 LABEL maintainer="NGINX Docker Maintainers <docker-maint@nginx.com>"
 
 ENV NGINX_VERSION 1.16.0
-ENV NJS_VERSION   0.3.2
-ENV PKG_RELEASE   1
+ENV PKG_RELEASE   2
 
 RUN set -x \
 # create nginx user/group first, to be consistent throughout docker variants
@@ -13,10 +12,13 @@ RUN set -x \
     && apkArch="$(cat /etc/apk/arch)" \
     && nginxPackages=" \
         nginx=${NGINX_VERSION}-r${PKG_RELEASE} \
-        nginx-module-xslt=${NGINX_VERSION}-r${PKG_RELEASE} \
-        nginx-module-geoip=${NGINX_VERSION}-r${PKG_RELEASE} \
-        nginx-module-image-filter=${NGINX_VERSION}-r${PKG_RELEASE} \
-        nginx-module-njs=${NGINX_VERSION}.${NJS_VERSION}-r${PKG_RELEASE} \
+        nginx-mod-http-xslt-filter=${NGINX_VERSION}-r${PKG_RELEASE} \
+        nginx-mod-http-geoip=${NGINX_VERSION}-r${PKG_RELEASE} \
+        nginx-mod-stream-geoip=${NGINX_VERSION}-r${PKG_RELEASE} \
+        nginx-mod-http-image-filter=${NGINX_VERSION}-r${PKG_RELEASE} \
+        nginx-mod-http-js=${NGINX_VERSION}-r${PKG_RELEASE} \
+        nginx-mod-stream-js=${NGINX_VERSION}-r${PKG_RELEASE} \
+        nginx-mod-http-headers-more=${NGINX_VERSION}-r${PKG_RELEASE} \
     " \
     && case "$apkArch" in \
         x86_64) \
