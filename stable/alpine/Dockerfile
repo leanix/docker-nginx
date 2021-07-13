@@ -3,7 +3,7 @@ FROM alpine:3.11
 LABEL maintainer="NGINX Docker Maintainers <docker-maint@nginx.com>"
 
 ENV NGINX_VERSION 1.16.1
-ENV PKG_RELEASE   6
+ENV PKG_RELEASE   8
 
 RUN set -x \
 # create nginx user/group first, to be consistent throughout docker variants
